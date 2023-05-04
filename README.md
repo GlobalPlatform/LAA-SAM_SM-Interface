@@ -25,7 +25,7 @@ Protocol binding
 
 For **LAA - HTTP REST Binding** please refer to:
 
-* [HTTP REST Binding - OpenAPI specification](spec/laa.yaml) ([Viewer](https://github.com/GlobalPlatform/LAA-SAM_SM-Interface))
+* [HTTP REST Binding - OpenAPI specification](spec/laa.yaml) ([Viewer](https://globalplatform.github.io/LAA-SAM_SM-Interface/))
 * [HTTP REST Binding - explanation](doc/LAA__HTTP_REST_Binding.md)
 
 Tools
