@@ -50,7 +50,7 @@ Protocol details
 ----------------------
 In the following sequence diagrams, the process [2a] *executeGPSERAMScript* is defined in [GPSERAM](LAA__References.md#GPSERAM) (Protocol Overview Diagram).  The process [2b] *executeGPSERAMScriptFile* use the same data elements but is processed locally using a file. In both cases, The [LAA](LAA__Terminology_And_Definitions.md#LAA)  is able to process a script containing APDUs.
 - See [eligibility](LAA__Overview.md#sam-eligibility-information) section for process [0]
-- See also "[End User interactions for user intent](LAA__Overview.md#end-user-interactions-for-user-intent) " section for process [1]
+- See also [End User interactions for user intent](LAA__Overview.md#end-user-interactions-for-user-intent) section for process [1]
 
 ### Installation
 
@@ -72,7 +72,7 @@ In this mode, *install* is not sent to the [SAM SM](LAA__Terminology_And_Definit
 The notification SHALL contain *samServiceScriptResp* parameter in this mode because the response is not provided through [GPSERAM](LAA__References.md#GPSERAM) script.
 
 #### SAM eligibility information
-This is a sub process for installation. It allows to retrieve all relevant information from the SAM SD to perform an eligibility process
+This is a sub process for installation (process 0). It allows to retrieve all relevant information from the SAM SD to perform an eligibility process
 
 ![install-samsm-script](uml/getSAMEligibilityInfos.svg)
 
