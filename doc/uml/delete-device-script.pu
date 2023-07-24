@@ -1,0 +1,31 @@
+@startuml
+
+hide footbox
+skinparam sequenceMessageAlign center
+skinparam sequenceArrowFontSize 11
+skinparam noteFontSize 11
+skinparam monochrome true
+skinparam lifelinestrategy solid
+ 
+rnote over "End User", "Device Application"
+     End User deletes Device Application 
+     containing a delete script uri
+end rnote
+
+"Device Application" -> LAA : delete(sessionId, samSMFQDN, deleteScriptUri)
+
+rnote over "LAA", "End User"
+     [0] End User interactions for user intent
+end rnote
+
+
+rnote over "LAA", "SAM SM"
+     [2b] Process executeGPSERAMScriptFile(sessionId, deleteScriptUri)
+end rnote
+
+
+ 
+LAA --> "Device Application" : notification(sessionId, aspSDAid, DELETE)
+ 
+LAA --> "SAM SM" : notification(SAMSM_FQDN, sessionId, aspSDAid, DELETE)
+@enduml

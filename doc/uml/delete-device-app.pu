@@ -1,0 +1,27 @@
+@startuml
+
+hide footbox
+skinparam sequenceMessageAlign center
+skinparam sequenceArrowFontSize 11
+skinparam noteFontSize 11
+skinparam monochrome true
+skinparam lifelinestrategy solid
+ 
+rnote over "End User", "Device Application"
+     End User deletes Device Application
+end rnote
+
+"Device Application" -> LAA : delete(sessionId, samSMFQDN, samServiceName)
+
+rnote over "LAA", "End User"
+     [0] End User interactions for user intent
+end rnote
+ 
+"LAA" -> "SAM SD" : DELETE_SAM_SERVICE(aspSDAid) 
+"SAM SD" --> LAA : deleteStatusWord
+
+ 
+LAA --> "Device Application" : notification(sessionId, aspSDAid, DELETE)
+ 
+LAA --> "SAM SM" : notification(SAMSM_FQDN, sessionId, aspSDAid, DELETE)
+@enduml

@@ -1,0 +1,33 @@
+
+@startuml
+ 
+hide footbox
+skinparam sequenceMessageAlign center
+skinparam sequenceArrowFontSize 11
+skinparam noteFontSize 11
+skinparam monochrome true
+skinparam lifelinestrategy solid
+ 
+"End User" -> "LAA" : requestMemoryReset
+
+ 
+rnote over "LAA", "End User"
+     [0] End User interactions for user intent
+end rnote
+
+LAA -> LAA : generateSession()
+
+LAA -> "SAM SD" : GET_DATA(SAMServicesListTag)
+"SAM SD" --> LAA : SAMServicesList  
+
+"LAA" -> "SAM SD" : DELETE_SAM_SERVICES(DeleteAllASPSDs) 
+"SAM SD" --> LAA : deleteStatusWord
+
+loop for each SAM service in list
+ 
+LAA --> "Device application" : notification(sessionId, aspSDAid, DELETE)
+ 
+LAA --> "SAM SM" : notification(SAMSM_FQDN, sessionId, aspSDAid, DELETE)
+end loop
+
+@enduml

@@ -1,0 +1,10 @@
+{
+  "functionExecutionStatus": {
+    "status": "FAILED",
+    "statusCodeData": {
+      "subjectCode": "1.2",
+      "reasonCode": "3",
+      "message": "not possible to create RAM session"
+    }
+  }
+}

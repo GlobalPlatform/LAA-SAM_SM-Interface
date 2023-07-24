@@ -1,0 +1,32 @@
+@startuml
+ 
+hide footbox
+skinparam sequenceMessageAlign center
+skinparam sequenceArrowFontSize 11
+skinparam noteFontSize 11
+skinparam monochrome true
+skinparam lifelinestrategy solid
+
+
+rnote over "End User", "Device Application"
+     "End User installs a new Device Application
+      containing a SAM script"
+
+rnote over "LAA", "SAM SD"
+     [0] Process getSAMEligibilityInfos
+end rnote
+
+"LAA" -> "LAA" : initiateInstallation(sessionId, supportedKlccs, SAMEligibilityInfos, DeviceInfo)
+
+rnote over "LAA", "End User"
+     [1] End User interactions for user intent
+end rnote
+
+rnote over "LAA", "SAM SD"
+     [2b] Process executeGPSERAMScriptFile(sessionId, localScriptUri)
+end rnote
+ 
+LAA --> "Device Application" : notification(sessionId, aspSDAid, INSTALL)
+ 
+LAA --> "SAM SM" : notification(sessionId, aspSDAid, INSTALL)
+@enduml
