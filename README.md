@@ -4,7 +4,7 @@ Local Applet Assistant (LAA) <-> SAM SM Interface
 Introduction
 ------------
 [LAA](doc/LAA__Terminology_And_Definitions.md#LAA) and [SAM SM](doc/LAA__Terminology_And_Definitions.md#SAMSM) have been defined in [SAM requirements](doc/LAA__References.md#SAMREQ).
-[LAA](doc/LAA__Terminology_And_Definitions.md#LAA) is a module in the device that provides the capability to manage SAM applications (called also SAM applets). 
+[LAA](doc/LAA__Terminology_And_Definitions.md#LAA) is a module in a device that provides the capability to manage SAM applications (called also SAM applets). 
 
 Through the [LAA](doc/LAA__Terminology_And_Definitions.md#LAA), the [End User](LAA__Terminology_And_Definitions.md#EU)  is able to perform functions including, but not limited to, the following:
 * View the SAM Services information.

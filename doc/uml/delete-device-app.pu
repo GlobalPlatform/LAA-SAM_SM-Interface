@@ -21,7 +21,7 @@ end rnote
 "SAM SD" --> LAA : deleteStatusWord
 
  
-LAA --> "Device Application" : notification(sessionId, aspSDAid, DELETE)
+LAA --> "Device Application" : notification(sessionId, samServiceIdentifier, DELETE)
  
-LAA --> "SAM SM" : notification(SAMSM_FQDN, sessionId, aspSDAid, DELETE)
+LAA --> "SAM SM" : notification(SAMSM_FQDN, sessionId, samServiceIdentifier, DELETE)
 @enduml
