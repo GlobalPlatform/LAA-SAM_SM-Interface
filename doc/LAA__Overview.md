@@ -151,7 +151,7 @@ Errors
 ========
 
 An object statusCodeData has been defined for the error management (like [SGP22](LAA__References.md#SGP22))
-see [OpenAPI specification](spec/gpseram.yaml) ([Viewer](https://gaelrgerard.github.io/laa/)) for the details
+see [OpenAPI specification](spec/gpseram.yaml) ([Viewer](https://globalplatform.github.io/LAA-SAM_SM-Interface)) for the details
 
 Subject Code value are defined in this table below :
 | **Subject Code**      | **Description**        | 
