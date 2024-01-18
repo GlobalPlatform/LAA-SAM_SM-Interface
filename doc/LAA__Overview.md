@@ -48,9 +48,10 @@ Same [sessionId](LAA__Terminology_And_Definitions.md#sessionId) SHALL be used fo
 
 Protocol details
 ----------------------
-In the following sequence diagrams, the process [2a] *executeGPSERAMScript* is defined in [GPSERAM](LAA__References.md#GPSERAM) (Protocol Overview Diagram).  The process [2b] *executeGPSERAMScriptFile* use the same data elements but is processed locally using a file. In both cases, The [LAA](LAA__Terminology_And_Definitions.md#LAA)  is able to process a script containing APDUs.
-- See [eligibility](LAA__Overview.md#sam-eligibility-information) section for process [0]
-- See also [End User interactions for user intent](LAA__Overview.md#end-user-interactions-for-user-intent) section for process [1]
+In the following sequence diagrams, those sub-processes are defined :
+- process [0] is defined in [eligibility](LAA__Overview.md#sam-eligibility-information) section 
+- process [1] is defined in [End User interactions for user intent](LAA__Overview.md#end-user-interactions-for-user-intent) section 
+- process [2] is defined in [GPSERAM](LAA__References.md#GPSERAM) (Protocol Overview Diagram).  This process may also be processed locally using a file. In both cases, The [LAA](LAA__Terminology_And_Definitions.md#LAA)  is able to process a script containing APDUs.
 
 ### Installation
 

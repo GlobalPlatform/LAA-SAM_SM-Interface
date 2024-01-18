@@ -17,7 +17,9 @@ LAA -> "SAM SD" : GET_DATA(supportedCAKlccId)
 "SAM SD" --> LAA : KlccKidKvns
 loop for each KidKvns in klcc list
 LAA -> "SAM SD" : GET_DATA(KlccKidKvn)
-"SAM SD" --> LAA : SAMCertif
+"SAM SD" --> LAA : KlccSAMCertif
 end loop
+LAA -> "SAM SD" : GET_DATA(supportedCAKlocId)
+"SAM SD" --> LAA : KlocCAIds
 
 @enduml

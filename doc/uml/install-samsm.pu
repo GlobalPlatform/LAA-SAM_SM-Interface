@@ -12,22 +12,22 @@ rnote over "End User", "Device application"
       looking for a SAM script on SAM SM"
 end rnote
 
-"Device application" -> LAA : install(sessionId, samSMFQDN, localScriptUri=null)
+"Device application" -> LAA : install(sessionId, samServiceIdentifier, samSMFQDN, localScriptUri=null)
 
 rnote over "LAA", "SAM SD"
-     [0] Process getSAMEligibilityInfos
+     [0] Process getSAMEligibilityData
 end rnote
 
-"LAA" -> "SAM SM" : initiateInstallation(sessionId, supportedSamCaIdentifiers, SAMEligibilityInfos, DeviceInfo)
+"LAA" -> "SAM SM" : install(sessionId, samServiceIdentifier, samEligibilityData)
 "SAM SM" -> "SAM SM" : retrieveOrGenerateScript(sessionId)
-"SAM SM" --> LAA : samEligibilityResponse(gpseramUri)
+"SAM SM" --> LAA : installResponse(gpseramInstallUri)
  
 rnote over "LAA", "End User"
      [1] End User interactions for user intent
 end rnote
  
 rnote over "LAA", "SAM SM"
-     [2a] Process executeGPSERAMScript(sessionId, gpseramUri)
+     [2] Process executeGPSERAMScript(sessionId, gpseramInstallUri)
 end rnote
  
 LAA --> "Device application" : notification(sessionId, samServiceIdentifier, INSTALL)
