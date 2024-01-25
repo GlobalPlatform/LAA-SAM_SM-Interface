@@ -9,7 +9,7 @@ The following figure presents the SAM architecture and its environment. All word
 
 This documentation is focusing on the SAM04 interface. [GPSERAM](LAA__References.md#GPSERAM) is also used on this SAM04 interface.
 [SAM Configuration](LAA__References.md#SAMCONF) is focusing more on the [SAM SD](LAA__Terminology_And_Definitions.md#SAMSD) part.
-A [SAM SM](LAA__Terminology_And_Definitions.md#SAMSM) and a [LAA](LAA__Terminology_And_Definitions.md#LAA) manage this protocol to allow the [LAA](LAA__Terminology_And_Definitions.md#LAA) to trigger a [Device Application](LAA__Terminology_And_Definitions.md#DeviceApplication) and the [Secure Element](LAA__Terminology_And_Definitions.md#SecureElement).
+A [SAM SM](LAA__Terminology_And_Definitions.md#SAMSM) and a [LAA](LAA__Terminology_And_Definitions.md#LAA) manage this SAM04 protocol to trigger a SAM Service installation/deletion.
 
 
 Protocol design
@@ -17,7 +17,7 @@ Protocol design
 
 ### Protocol Layers
 
-LAA protocol is a message-oriented protocol which used the following protocol stack:
+LAA <-> SAM SM protocol is a message-oriented protocol which used the following protocol stack:
 
 ![Protocol layers](images/LAA__Protocol_layers.png)
 
