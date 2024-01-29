@@ -263,7 +263,7 @@ components:
         samVersion:
           $ref: "#/components/schemas/version"
         samSDEligibilityData:
-          $ref: "#/components/schemas/binData"
+          $ref: "#/components/schemas/samSDEligibilityData"
         deviceInfo:
           $ref: "#/components/schemas/deviceInfo"
         samCertificateChains:
@@ -271,6 +271,24 @@ components:
           items:
             $ref: "#/components/schemas/samCertificateChain"
 
+    samSDEligibilityData:
+      description: data retrieved from SAM SD with get data
+      required :
+        - "cardCapabilityInformation"
+        - "cardRecognitionData"
+        - "extendedCardResources"
+        - "samInfo"
+      properties:
+        cardRecognitionData:
+          $ref: "#/components/schemas/binData"
+        cardCapabilityInformation:
+          $ref: "#/components/schemas/binData"
+        extendedCardResources:
+          $ref: "#/components/schemas/binData"
+        samInfo:
+          $ref: "#/components/schemas/binData"
+        additionalInfo:
+          $ref: "#/components/schemas/binData"
     samServiceIdentifier:
      description: "used to uniquely identified a SAM service on a SAM SM"
      required:
@@ -418,7 +436,12 @@ components:
                     "seId": "89001012012341234012345678901224"
                   },
                   "samVersion": "1.0.0",
-                  "samSDEligibilityData": "dGhpcyBpcyBhbiBleGFtcGxl",
+                  "samSDEligibilityData":{
+                    "cardCapabilityInformation": "dGhpcyBpcyBhbiBleGFtcGxl",
+                    "cardRecognitionData": "dGhpcyBpcyBhbiBleGFtcGxl",
+                    "extendedCardResources": "dGhpcyBpcyBhbiBleGFtcGxl",
+                    "samInfo": "dGhpcyBpcyBhbiBleGFtcGxl"
+                  },
                   "deviceInfo": {
                     "openMobileApiVersion": "1.0.0"
                   },
