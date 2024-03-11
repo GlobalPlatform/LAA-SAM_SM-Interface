@@ -6,20 +6,20 @@ The tables below list references applicable to this specification. The latest ve
 Normative References
 --------------------
 
-|                                                   |                                                                           |
-|---------------------------------------------------|---------------------------------------------------------------------------|
-| Standard / Specification                          | Description                                                               |
-| [SAMREQ](https://www.gsma.com/newsroom/wp-content/uploads/SAM.01-v1.0.pdf)   | Secured Applications for Mobile - Requirements version 1.0                  |
-| [SAMCONF](https://globalplatform.org/specs-library/)   | SAM Configuration version 1.0                  |
-| [GPSERAM](https://github.com/GlobalPlatform/SERAM) | Globalplatform Secure Element remote access management  version 2.0 or higher                  |
-| [OpenAPI](https://spec.openapis.org/oas/v3.0.3)   | Open API Initiative – OpenAPI Specification version 3.0                   |
-| [RFC2119](https://www.rfc-editor.org/rfc/rfc2119) | IETF – Key words for use in RFCs to Indicate Requirement Levels           |
-| [RFC2818](https://www.rfc-editor.org/rfc/rfc2119) | IETF – HTTP Over TLS                                                      |
-| [RFC6265](https://www.rfc-editor.org/rfc/rfc6265) | IETF – HTTP State Management Mechanism                                    |
-| [RFC7230](https://www.rfc-editor.org/rfc/rfc7230) | IETF – Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing |
-| [RFC7231](https://www.rfc-editor.org/rfc/rfc7231) | IETF – Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content      |
-| [RFC7232](https://www.rfc-editor.org/rfc/rfc7232) | IETF – Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests       |
-| [RFC7234](https://www.rfc-editor.org/rfc/rfc7234) | IETF – Hypertext Transfer Protocol (HTTP/1.1): Caching                    |
+|                                                                                                         |                                                                               |
+|---------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| Standard / Specification                                                                                | Description                                                                   |
+| [SAMREQ](https://www.gsma.com/get-involved/working-groups/wp-content/uploads/2023/11/SAM.01-v1.1-1.pdf) | Secured Applications for Mobile - Requirements version 1.1                    |
+| [SAMCONF](https://globalplatform.org/specs-library/)                                                    | SAM Configuration version 1.0                                                 |
+| [GPSERAM](https://github.com/GlobalPlatform/SERAM)                                                      | Globalplatform Secure Element remote access management  version 2.0 or higher |
+| [OpenAPI](https://spec.openapis.org/oas/v3.0.3)                                      | Open API Initiative – OpenAPI Specification version 3.0                       |
+| [RFC2119](https://www.rfc-editor.org/rfc/rfc2119)                                                       | IETF – Key words for use in RFCs to Indicate Requirement Levels               |
+| [RFC2818](https://www.rfc-editor.org/rfc/rfc2119)                                                       | IETF – HTTP Over TLS                                                          |
+| [RFC6265](https://www.rfc-editor.org/rfc/rfc6265)                                                       | IETF – HTTP State Management Mechanism                                        |
+| [RFC7230](https://www.rfc-editor.org/rfc/rfc7230)                                                       | IETF – Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing     |
+| [RFC7231](https://www.rfc-editor.org/rfc/rfc7231)                                                       | IETF – Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content          |
+| [RFC7232](https://www.rfc-editor.org/rfc/rfc7232)                                                       | IETF – Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests           |
+| [RFC7234](https://www.rfc-editor.org/rfc/rfc7234)                                                       | IETF – Hypertext Transfer Protocol (HTTP/1.1): Caching                        |
 
 
 Informative References

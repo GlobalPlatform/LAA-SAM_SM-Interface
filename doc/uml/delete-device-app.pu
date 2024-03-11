@@ -11,7 +11,7 @@ rnote over "End User", "Device Application"
      End User deletes Device Application
 end rnote
 
-"Device Application" -> LAA : delete(sessionId, samSMFQDN, samServiceName)
+"Device Application" -> LAA : delete(sessionId, samServiceIdentifier, samSMFQDN)
 
 rnote over "LAA", "End User"
      [0] End User interactions for user intent
@@ -21,7 +21,7 @@ end rnote
 "SAM SD" --> LAA : deleteStatusWord
 
  
-LAA --> "Device Application" : notification(sessionId, aspSDAid, DELETE)
+LAA --> "Device Application" : notification(sessionId, samServiceIdentifier, DELETE)
  
-LAA --> "SAM SM" : notification(SAMSM_FQDN, sessionId, aspSDAid, DELETE)
+LAA --> "SAM SM" : notification(SAMSM_FQDN, sessionId, samServiceIdentifier, DELETE)
 @enduml

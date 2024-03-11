@@ -14,10 +14,10 @@ ASP -> "SAM SM" : perso(sessionId, endUserPersoInfo)
 "ASP" --> "Device Application" : registrationComplete
 "Device Application" -> LAA : continueGPSERAMSession(sessionId)
 rnote over "LAA", "SAM SM"
-    [2a] Process executeGPSERAMScript(sessionId, persoUri)
+    [2] Process executeGPSERAMScript(sessionId, persoUri)
 end rnote
  
  
-LAA --> "Device Application" : notification(sessionId, aspSDAid, PERSO)
-LAA --> "SAM SM" : notification(sessionId, aspSDAid, PERSO)
+LAA --> "Device Application" : notification(sessionId, samServiceIdentifier, PERSO)
+LAA --> "SAM SM" : notification(sessionId, samServiceIdentifier, PERSO)
 @enduml

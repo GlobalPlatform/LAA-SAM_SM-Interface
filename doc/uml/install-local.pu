@@ -1,5 +1,5 @@
 @startuml
- 
+
 hide footbox
 skinparam sequenceMessageAlign center
 skinparam sequenceArrowFontSize 11
@@ -13,21 +13,23 @@ rnote over "End User", "Device Application"
       containing a SAM script"
 end rnote
 
+"Device Application" -> LAA : install(sessionId, samServiceIdentifier, samSMFQDN, localScriptUri)
+
 rnote over "LAA", "SAM SD"
-     [0] Process getSAMEligibilityInfos
+     [0] Process getSAMEligibilityData
 end rnote
 
-"LAA" -> "LAA" : initiateInstallation(sessionId, supportedKlccs, SAMEligibilityInfos, DeviceInfo)
+"LAA" -> "LAA" : install(sessionId, samServiceIdentifier, samEligibilityData)
 
 rnote over "LAA", "End User"
      [1] End User interactions for user intent
 end rnote
 
 rnote over "LAA", "SAM SD"
-     [2b] Process executeGPSERAMScriptFile(sessionId, localScriptUri)
+     [2] Process executeGPSERAMScriptFile(sessionId, localScriptUri)
 end rnote
- 
-LAA --> "Device Application" : notification(sessionId, aspSDAid, INSTALL)
- 
-LAA --> "SAM SM" : notification(sessionId, aspSDAid, INSTALL)
+
+LAA --> "Device Application" : notification(sessionId, samServiceIdentifier, INSTALL)
+
+LAA --> "SAM SM" : notification(sessionId, samServiceIdentifier, INSTALL)
 @enduml

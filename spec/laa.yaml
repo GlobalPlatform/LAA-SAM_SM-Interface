@@ -139,61 +139,97 @@ paths:
           description: "Unexpected error on server side"
 components:
   schemas:
+
+    ## simple type ##
+
+    aid:
+      type: "string"
+      pattern: "^([0-9A-F]{2}){5,16}$"
+      example: "A00001510000"
+
+    apdu:
+      description: hexadecimal encoded APDU
+      type: string
+      pattern: '([0-9A-F]{2})*'
+
     binData:
       description: "base 64 encoded bin data"
       type: "string"
       format: "byte"
       example: "dGhpcyBpcyBhbiBleGFtcGxl"
 
-    secureElement:
-      type: "object"
-      properties:
-        seType:
-          type: "string"
-          enum:
-            - "ESE"
-            - "UICC"
-            - "EUICC_REMOVABLE"
-            - "EUICC"
-            - "EUICC_INTEGRATED"
-            - "NOT_DEFINED"
-            - "UNKNOWN"
-        seId:
-          type: "string"
-          example: "89001012012341234012345678901224"
-    aid:
+    certificateFormat:
+      description: "x509 or GP certificate format"
       type: "string"
-      pattern: "^([0-9A-F]{2}){5,16}$"
-      example: "A00001510000"
+      enum:
+        - "x509"
+        - "GP"
 
-    sessionId:
+    functionExecutionStatusEnum:
       type: "string"
-      format: "uuid"
-      example: "0f96af97-f879-45a2-a011-ee7439df3804"
+      enum:
+        - "EXECUTED_SUCCESS"
+        - "EXECUTED_WARNING"
+        - "FAILED"
+        - "EXPIRED"
+        - "RAM_SESSION_CREATED"
+      description:
+        "function execution status like GSMA RSP"
 
-    version:
+    installationStep:
       type: "string"
-      example: "1.0.0"
+      enum:
+        - "INSTALL"
+        - "PERSO"
+        - "DELETE"
+        - "LOCK"
+        - "UNLOCK"
 
     oid:
       type: "string"
       pattern: ^([0-2])((\.0)|(\.[1-9][0-9]*))*$
       example: "1.0"
 
-    installationStep:
+    sessionId:
+      type: "string"
+      format: "uuid"
+      example: "0f96af97-f879-45a2-a011-ee7439df3804"
+
+    seType:
+      description: "This is the enumeration of secure element types"
       type: "string"
       enum:
-            - "INSTALL"
-            - "PERSO"
-            - "DELETE"
-            - "LOCK"
-            - "UNLOCK"
+        - "ESE"
+        - "UICC"
+        - "EUICC_REMOVABLE"
+        - "EUICC"
+        - "EUICC_INTEGRATED"
+        - "NOT_DEFINED"
+        - "UNKNOWN"
+
+    version:
+      type: "string"
+      example: "1.0.0"
+
+
+    ## complex type ##
+
     deviceInfo:
       type: "object"
       properties:
         openMobileApiVersion:
           $ref: "#/components/schemas/version"
-    
+
+    functionExecutionStatus:
+      description: "Whether the function has been processed correctly or not (like SGP22)"
+      required:
+        - "status"
+      properties:
+        status:
+          $ref: "#/components/schemas/functionExecutionStatusEnum"
+        statusCodeData:
+          $ref: "#/components/schemas/statusCodeData"
+
     samCertificateChain:
       type: "object"
       required:
@@ -207,12 +243,10 @@ components:
           items:
             $ref: "#/components/schemas/binData"
         certificateFormat:
-          type: "string"
-          enum:
-            - "x509"
-            - "GP"
+          $ref: "#/components/schemas/certificateFormat"
         caIdentifier:
           type: "string"
+          description: "SAM CA Identifier for this chain."
 
     samEligibilityData:
       description: "this command alow to perform an eligibility check. samSDEligibilityData is the concatenation of the GET DATA responses performed on the SAM SD : CCI, CRD, SAMInfo"
@@ -229,7 +263,7 @@ components:
         samVersion:
           $ref: "#/components/schemas/version"
         samSDEligibilityData:
-          $ref: "#/components/schemas/binData"
+          $ref: "#/components/schemas/samSDEligibilityData"
         deviceInfo:
           $ref: "#/components/schemas/deviceInfo"
         samCertificateChains:
@@ -237,6 +271,24 @@ components:
           items:
             $ref: "#/components/schemas/samCertificateChain"
 
+    samSDEligibilityData:
+      description: data retrieved from SAM SD with get data
+      required :
+        - "cardCapabilityInformation"
+        - "cardRecognitionData"
+        - "extendedCardResources"
+        - "samInfo"
+      properties:
+        cardRecognitionData:
+          $ref: "#/components/schemas/binData"
+        cardCapabilityInformation:
+          $ref: "#/components/schemas/binData"
+        extendedCardResources:
+          $ref: "#/components/schemas/binData"
+        samInfo:
+          $ref: "#/components/schemas/binData"
+        additionalInfo:
+          $ref: "#/components/schemas/binData"
     samServiceIdentifier:
      description: "used to uniquely identified a SAM service on a SAM SM"
      required:
@@ -271,27 +323,27 @@ components:
           items:
             $ref: "#/components/schemas/apdu"
 
-
-    apdu:
-      description: hexadecimal encoded APDU
-      type: string
-      pattern: '([0-9A-F]{2})*'
-
-    functionExecutionStatus:
-      description: "Whether the function has been processed correctly or not (like SGP22)"
+    secureElement:
+      description: >-
+        A Secure Element. It is composed of the type of Secure Element and the
+        identifier of the Secure Element. Moreover, it may includes an
+        additional field to provide some additional information related to
+        the Secure Element (E.g. the support of CSP)
+      type: "object"
       required:
-        - "status"
+        - "seType"
+        - "seid"
       properties:
-         status:
+        seType:
+          $ref: "#/components/schemas/seType"
+        seId:
           type: "string"
-          enum:
-                - "EXECUTED_SUCCESS"
-                - "EXECUTED_WARNING"
-                - "FAILED"
-                - "EXPIRED"
-                - "RAM_SESSION_CREATED"
-         statusCodeData:
-          $ref: "#/components/schemas/statusCodeData"
+          example: "89001012012341234012345678901224"
+        seExtraInfo:
+          description: A comma separated list of features supported by the SE.
+          type: string
+          example: 'CSP'
+
     statusCodeData:
       description :
        "status code data like GSMA RSP"
@@ -311,26 +363,7 @@ components:
           description: Textual and human readable explanation
           example: "SAM SD capabilities is not compliant with SAM Service"
 
-    samInstallMsg:
-      description: "this msg alow to trigger an install on a SAM SD"
-      type: "object"
-      required:
-        - "samEligibilityData"
-        - "samServiceIdentifier"
-      properties:
-        samServiceIdentifier:
-          $ref: "#/components/schemas/samServiceIdentifier"
-        samEligibilityData:
-          $ref: "#/components/schemas/samEligibilityData"
-
-    samDeleteMsg:
-      description: "this msg alow to trigger a delete on a SAM SD"
-      type: "object"
-      required:
-        - "samServiceIdentifier"
-      properties:
-        samServiceIdentifier:
-          $ref: "#/components/schemas/samServiceIdentifier"
+    ## Messages ##
 
     notificationMsg:
       description: "This is the data model for the notification msg"
@@ -352,6 +385,15 @@ components:
           type: "string"
           description: "can be set to indicate some useful extra data. For instance the installation mode"
 
+    samDeleteMsg:
+      description: "this msg alow to trigger a delete on a SAM SD"
+      type: "object"
+      required:
+        - "samServiceIdentifier"
+      properties:
+        samServiceIdentifier:
+          $ref: "#/components/schemas/samServiceIdentifier"
+
     samManagementRespMsg:
       description: "This is the data model for the sam install or delete Response."
       type: "object"
@@ -364,6 +406,20 @@ components:
           type: string
           format: uri
           example: "https://sam-sm.server1.com/gp/seram/script1"
+
+    samInstallMsg:
+      description: "this msg alow to trigger an install on a SAM SD"
+      type: "object"
+      required:
+        - "samEligibilityData"
+        - "samServiceIdentifier"
+      properties:
+        samServiceIdentifier:
+          $ref: "#/components/schemas/samServiceIdentifier"
+        samEligibilityData:
+          $ref: "#/components/schemas/samEligibilityData"
+
+
 
   examples:
     installReq:
@@ -380,7 +436,12 @@ components:
                     "seId": "89001012012341234012345678901224"
                   },
                   "samVersion": "1.0.0",
-                  "samSDEligibilityData": "dGhpcyBpcyBhbiBleGFtcGxl",
+                  "samSDEligibilityData":{
+                    "cardCapabilityInformation": "dGhpcyBpcyBhbiBleGFtcGxl",
+                    "cardRecognitionData": "dGhpcyBpcyBhbiBleGFtcGxl",
+                    "extendedCardResources": "dGhpcyBpcyBhbiBleGFtcGxl",
+                    "samInfo": "dGhpcyBpcyBhbiBleGFtcGxl"
+                  },
                   "deviceInfo": {
                     "openMobileApiVersion": "1.0.0"
                   },
